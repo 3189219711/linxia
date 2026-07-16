@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Cheat 预测不可变保护",
+  "description": "在任何写入/编辑文件前检查：若目标是 predictions/ 目录下的 .md 文件且改动触及 ## 预测 / ## Prediction 段，则阻止。保护 cheat-on-content 的盲预测铁律。",
+  "version": "1",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": [
+      "write"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "你即将执行一次写入/编辑操作。请先做 cheat-on-content 的「预测不可变」检查：\n\n1. 判断目标文件路径是否在 `predictions/` 目录下且为 `.md` 文件。若不是，直接放行，无需任何额外动作。\n2. 若是 predictions/*.md：\n   - 允许：创建全新的预测文件；编辑首个 `##` 之前的元数据头；向 `## 复盘` / `## Retrospective` 段追加内容。\n   - 禁止：修改 `## 预测` / `## Prediction`（含带版本号如 `## 预测 v2`）段落内、直到下一个 `##` 标题之间的任何已有内容；禁止用整体覆盖写(Write)覆盖已存在的预测文件。\n3. 若本次改动违反上述禁止项：不要执行该写入，向用户说明违反了铁律 #1（预测一旦写下即不可变）。正确做法是——想重做预测就新建 `predictions/<原名>_redo.md`，原文件原样保留；发现事后错误就写进 `## 复盘` 段作为 Correction。\n4. 仅当改动是纯 markdown 排版修正（无语义变化）时才可放行，并提示用户此次为格式豁免。\n\n参考 shared-references/blind-prediction-protocol.md。"
+  }
+}

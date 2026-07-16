@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Cheat 状态看板",
+  "description": "手动触发，读取当前项目的 .cheat-state.json、candidates.md 等，渲染 cheat-on-content 状态看板（buffer 颜色、待复盘、候选 top3、校准样本与 confidence、各类警戒）。",
+  "version": "1",
+  "when": {
+    "type": "userTriggered"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "执行 cheat-on-content 的状态看板报告（等效于原 SessionStart hook）：\n\n1. 若当前项目根目录没有 `.cheat-state.json`，说明这还不是一个 cheat-on-content 项目，提示用户先说「初始化」跑 /cheat-init，然后停止。\n2. 若存在 `.cheat-state.json`，读取它以及 `candidates.md`（若有），按 skills/cheat-status/SKILL.md 与 hooks/session-start.sh 的逻辑渲染一份简洁看板，至少包含：\n   - 📦 Buffer：拍了未发的数量 + 按 target_publish_cadence_days 换算的颜色（红<1天/橙≤2天/绿≤5天/蓝>5天积压）；无固定节奏则标「灵活节奏」。\n   - ⏰ 待复盘：已过 RETRO_WINDOW_DAYS（默认3天）该复盘的数量与最早一条。\n   - 🎯 候选 top 3：candidates.md 前三个选题标题；为空则提示「说 抓热点 或 找选题」。\n   - 📈 校准样本数 + confidence 等级（0=极低…>20=高）。\n   - ⚠️ 各类警戒：buffer 断更风险、schema 版本不一致、上次走了 --skip-blind 的污染提醒、rubric 形态严重不匹配等。\n3. 报告完不要主动开始任何拍摄/写作/预测动作，等用户决定。\n\n技能已安装在 ~/.kiro/skills/cheat-on-content/，需要时可读取其中的子技能与 shared-references。"
+  }
+}
