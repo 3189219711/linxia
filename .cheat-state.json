@@ -22,8 +22,10 @@
   "enabled_perf_adapters": [],
   "last_bump_at": null,
   "last_bump_self_audited": false,
-  "last_published_at": "2026-07-14",
-  "last_published_file": "predictions/2026-07-14_2c0f4f52e83a_颈椎.md",
+  "last_published_at": "2026-07-17",
+  "last_published_file": "predictions/2026-07-17_33760e8e8320_脚麻.md",
+  "last_published_video_folder": "videos/2026-07-17_33760e8e8320_脚麻/",
+  "last_published_platform_id": "pending",
   "last_retro_at": null,
   "last_trends_run_at": null,
   "last_trends_added_count": 0,
@@ -32,7 +34,10 @@
   "consecutive_directional_errors": [],
   "pending_retros": [
     "predictions/2026-07-14_5f8839de6200_补觉.md",
-    "predictions/2026-07-14_2c0f4f52e83a_颈椎.md"
+    "predictions/2026-07-14_2c0f4f52e83a_颈椎.md",
+    "predictions/2026-07-17_9a1c66410031_控糖.md",
+    "predictions/2026-07-17_797cb7d22535_眼红.md",
+    "predictions/2026-07-17_33760e8e8320_脚麻.md"
   ],
   "shoots": [],
   "in_progress_session": null,
